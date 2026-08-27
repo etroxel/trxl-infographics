@@ -5,9 +5,12 @@
    `roster` instead of `guest` / `guests` — see the roster block in the HTML.
 
    `cite` fields are timestamps into the YouTube cut. They render as links
-   that jump to the moment. Timestamps come from 239-transcript.md, which
-   is the final edit and matches the published chapter marks — never
-   hand-adjust one without re-checking the tape.
+   that jump to the moment. Timestamps come from 239-transcript-final.md
+   (the Descript export of the actual assembled composition — real final-
+   broadcast timeline). 239-transcript.md's [MM:SS] labels are source-clip
+   timecodes from each guest's own interview, NOT final-timeline — never
+   pull a cite timestamp from that file. Never hand-adjust a cite without
+   re-checking 239-transcript-final.md.
    ------------------------------------------------------------------------- */
 
 window.TRXL_EPISODE = {
@@ -71,13 +74,13 @@ window.TRXL_EPISODE = {
   pullQuote: {
     text: "Revit's a masterpiece, guys. You're never gonna build that. You're never gonna compete with that. It's a parametric propagation engine built before the age of AI by human hands, with more error checking and handling than you could ever imagine. Its value to humanity is keeping the contract documents in sync. It's not a design tool.",
     attribution: "Clifton Harness, CEO & co-founder, TestFit",
-    cite: { ts: "17:20", who: "Clifton Harness" },
+    cite: { ts: "1:30:57", who: "Clifton Harness" },
   },
 
   stats: [
-    { value: "70%", label: "peak adoption Bimbeats measured on a real AutoCAD-to-Civil 3D migration, then it flatlined", cite: { ts: "24:06", who: "Matt Wash" } },
+    { value: "70%", label: "peak adoption Bimbeats measured on a real AutoCAD-to-Civil 3D migration, then it flatlined", cite: { ts: "1:56:03", who: "Matt Wash" } },
     { value: "11", label: "voices asked the same question about what switching platforms actually costs" },
-    { value: "10%", label: "of firm revenue Randall Stevens calls a reasonable software spend, before training and disruption", cite: { ts: "1:55:19", who: "Randall Stevens" } },
+    { value: "10%", label: "of firm revenue Randall Stevens calls a reasonable software spend, before training and disruption", cite: { ts: "1:50:48", who: "Randall Stevens" } },
   ],
 
   question:
@@ -88,25 +91,25 @@ window.TRXL_EPISODE = {
       title: "The sunk cost nobody budgets for",
       body: "Gavin Nicholls named sunk cost fallacy before I could ask about it directly, then described his own Revit add-in work as polishing the prison bars from the other side. Holger Kreienbrink named the same resistance from the opposite chair: the former champions of whatever tool a firm is leaving, who lose status the moment their expertise stops mattering. Clifton Harness put a number on what doing this right actually costs — firms almost never budget to retrain people at all.",
       cites: [
-        { ts: "28:05", who: "Gavin Nicholls" },
-        { ts: "27:00", who: "Holger Kreienbrink" },
-        { ts: "23:05", who: "Clifton Harness" },
+        { ts: "2:25:12", who: "Gavin Nicholls" },
+        { ts: "2:34:52", who: "Holger Kreienbrink" },
+        { ts: "2:49:53", who: "Clifton Harness" },
       ],
     },
     {
       title: "The plateau nobody predicted",
       body: "Bimbeats measures tool usage down to the window title, which let Matt Wash show a real firm's AutoCAD-to-Civil 3D migration climb from thirty to seventy percent over eighteen months, then flatline completely. Ariel Cooke-Zamora reframed the flatline as the actual finding: the people still on the old tool aren't a training problem, they're a different problem that needs a different lever.",
       cites: [
-        { ts: "24:06", who: "Matt Wash" },
-        { ts: "26:43", who: "Ariel Cooke-Zamora" },
+        { ts: "1:56:03", who: "Matt Wash" },
+        { ts: "1:58:59", who: "Ariel Cooke-Zamora" },
       ],
     },
     {
       title: "A Catch-22 with no easy exit",
       body: "Campbell Yule laid out the structural bind underneath every BIM 2.0 pitch: a new tool has to survive inside the world of the one it's replacing before it can generate the revenue that would ever let it escape. Carl Christensen's answer from inside Autodesk reads as the direct counter — building for a platform and an ecosystem, not a monolith, so customers can adopt new tools without leaving the old ones behind.",
       cites: [
-        { ts: "1:02:24", who: "Campbell Yule" },
-        { ts: "5:43", who: "Carl Christensen" },
+        { ts: "2:13:59", who: "Campbell Yule" },
+        { ts: "1:35:58", who: "Carl Christensen" },
       ],
     },
   ],
@@ -132,67 +135,67 @@ window.TRXL_EPISODE = {
       title: "Carrying capacity has a ceiling",
       body: "Everybody can write software now, but a firm can only actively manage so many tools before it just has to stop adding more.",
       prompt: "How many genuinely new tools has your firm adopted this year, versus just trialed?",
-      cite: { ts: "13:43", who: "Randall Stevens" },
+      cite: { ts: "15:58", who: "Randall Stevens" },
     },
     {
       title: "Nobody wants the magic button, they just think they do",
       body: "Ask an AI to design a three-story building in downtown Manhattan and you'll get something that skips every real trade-off an architect actually has to make.",
       prompt: "Where's the line on your team between automating drudgery and automating judgment?",
-      cite: { ts: "8:07", who: "Carl Christensen" },
+      cite: { ts: "32:26", who: "Carl Christensen" },
     },
     {
       title: "The dashboard that flags burnout risk",
       body: "Connecting an LLM to a firm's time-tracking data turned an invisible wellbeing problem into a 90-day report naming exactly who's most at risk.",
       prompt: "Would your firm rather find this out from a dashboard, or from an exit interview?",
-      cite: { ts: "32:37", who: "Matt Wash" },
+      cite: { ts: "2:04:14", who: "Matt Wash" },
     },
     {
       title: "You don't feel your own screen time either",
       body: "Ariel compares BIMbeats to a phone's screen-time report: nobody thinks they need it until the number actually shows up.",
       prompt: "If someone measured your team's real tool-switching today, would the number surprise you?",
-      cite: { ts: "35:40", who: "Ariel Cooke-Zamora" },
+      cite: { ts: "2:07:39", who: "Ariel Cooke-Zamora" },
     },
     {
       title: "The one incumbent that's actually vulnerable",
       body: "Of everything on the market today, Campbell thinks SketchUp, not Revit or Archicad, is the only tool a BIM 2.0 challenger could realistically displace.",
       prompt: "Which tool in your stack is genuinely replaceable right now, versus which one only feels that way?",
-      cite: { ts: "59:21", who: "Campbell Yule" },
+      cite: { ts: "2:11:01", who: "Campbell Yule" },
     },
     {
       title: "Nobody asked for the PDF button",
       body: "The feature that actually moved adoption at Finch wasn't the AI agent, it was letting people export a plain PDF straight out of the browser.",
       prompt: "What's the boring feature in your stack that quietly removed the most friction?",
-      cite: { ts: "22:40", who: "Jesper Wallgren" },
+      cite: { ts: "2:24:02", who: "Jesper Wallgren" },
     },
     {
       title: "The software that keeps up with you",
       body: "The first time Gavin used Arcol, the thing that surprised him wasn't a feature — it was that the program loaded faster than he could click ahead of it.",
       prompt: "How much of your team's 'muscle memory' is actually just compensating for slow software?",
-      cite: { ts: "24:20", who: "Gavin Nicholls" },
+      cite: { ts: "1:04:11", who: "Gavin Nicholls" },
     },
     {
       title: "They deleted the old software on purpose",
       body: "One Graphisoft client uninstalled AutoCAD from every machine during a migration, specifically so nobody could quietly fall back to it.",
       prompt: "Would your firm ever go that far, or is the old tool always one click away?",
-      cite: { ts: "28:27", who: "Holger Kreienbrink" },
+      cite: { ts: "2:36:37", who: "Holger Kreienbrink" },
     },
     {
       title: "Culture eats strategy for lunch",
       body: "Marty's framing, borrowed from a talk he gave on technology adoption: architects have to value their own time before they'll bother saving it.",
       prompt: "Does your firm actually bill in a way that rewards saved time, or just more hours?",
-      cite: { ts: "52:46", who: "Marty Rozmanith" },
+      cite: { ts: "2:47:29", who: "Marty Rozmanith" },
     },
     {
       title: "Some firms delete the model on purpose",
       body: "Dimitrie described teams intentionally deleting a Revit model before handoff, specifically so a messy file can't come back to bite them legally.",
       prompt: "Is your firm's instinct to share work in progress, or to protect it?",
-      cite: { ts: "23:37", who: "Dimitrie Stefanescu" },
+      cite: { ts: "1:29:53", who: "Dimitrie Stefanescu" },
     },
     {
       title: "Nobody paid him to get good",
       body: "Clifton taught himself scripting on his own time because the firm never budgeted to train him, then realized designers were the ones getting shortchanged by that arrangement.",
       prompt: "Who on your team is investing in themselves that the firm should be investing in instead?",
-      cite: { ts: "23:52", who: "Clifton Harness" },
+      cite: { ts: "2:50:44", who: "Clifton Harness" },
     },
   ],
 
@@ -201,5 +204,5 @@ window.TRXL_EPISODE = {
 
   closingQuote:
     "I often describe it as polishing the prison bars from the other side. I'm sort of standing on the outside of the prison and just making the bars look nice for everyone so they at least feel comfortable in BIM 1.0, at least.",
-  closingQuoteCite: { ts: "28:05", who: "Gavin Nicholls" },
+  closingQuoteCite: { ts: "2:26:09", who: "Gavin Nicholls" },
 };
