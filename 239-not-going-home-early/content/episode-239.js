@@ -18,7 +18,7 @@ window.TRXL_EPISODE = {
   subtitle:
     "Eleven people building and using BIM 2.0 tools, all asked what switching platforms actually costs a firm. No two of them measured it the same way.",
 
-  youtube: "https://youtu.be/PEFq6grOj3Y",
+  youtube: "https://youtu.be/1pqwfwuh-gY",
 
   // Full editions go to every subscriber, free accounts included — the free
   // signup is deliberate, it feeds the list. Partners funded the series.
