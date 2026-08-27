@@ -92,7 +92,7 @@ window.TRXL_EPISODE = {
       body: "Gavin Nicholls named sunk cost fallacy before I could ask about it directly, then described his own Revit add-in work as polishing the prison bars from the other side. Holger Kreienbrink named the same resistance from the opposite chair: the former champions of whatever tool a firm is leaving, who lose status the moment their expertise stops mattering. Clifton Harness put a number on what doing this right actually costs — firms almost never budget to retrain people at all.",
       cites: [
         { ts: "2:25:12", who: "Gavin Nicholls" },
-        { ts: "2:34:52", who: "Holger Kreienbrink" },
+        { ts: "2:34:32", who: "Holger Kreienbrink" },
         { ts: "2:49:53", who: "Clifton Harness" },
       ],
     },
