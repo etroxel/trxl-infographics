@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-accent="coral">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow, noai, noimageai">
+  <title>TRXL 239 — You're Not Going Home Early</title>
+  <meta name="description" content="Eleven people building and using BIM 2.0 tools, all asked what switching platforms actually costs a firm.">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="TRXL Podcast">
+  <meta property="og:title" content="TRXL 239 — You're Not Going Home Early">
+  <meta property="og:description" content="Eleven people building and using BIM 2.0 tools, all asked what switching platforms actually costs a firm.">
+  <meta property="og:url" content="https://assets.trxl.co/239-not-going-home-early/">
+  <meta property="og:image" content="https://assets.trxl.co/239-not-going-home-early/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="stylesheet" href="assets/trxl-tokens.css?v=21">
+  <link rel="stylesheet" href="assets/field-report.css?v=21">
+</head>
+<body>
+
+  <!-- ========================================================
+       STICKY NAV
+       ======================================================== -->
+  <nav class="ep-nav" id="epNav">
+    <div class="ep-nav-inner">
+      <div class="ep-nav-left">
+        <img src="assets/logo-white.png" alt="TRXL" class="ep-nav-logo" id="epNavLogo">
+        <div class="ep-nav-ep">
+          Episode <strong id="epNavNum"></strong>
+          <span style="margin:0 8px;opacity:.4">·</span>
+          <span id="epNavDate"></span>
+        </div>
+      </div>
+      <div class="ep-nav-right">
+        <a href="#listen" class="ep-btn ep-btn-ghost" style="padding:8px 14px;font-size:12px">Listen</a>
+      </div>
+    </div>
+    <div class="ep-nav-progress" id="epNavProgress"></div>
+  </nav>
+
+  <!-- ========================================================
+       HERO
+       ======================================================== -->
+  <header class="ep-hero">
+    <div class="ep-hero-sky"></div>
+    <div class="ep239-bars-frame" aria-hidden="true">
+      <div class="ep239-bars"></div>
+      <div class="ep239-sheen"></div>
+      <div class="ep239-grain"></div>
+    </div>
+    <div class="ep-container ep-hero-inner">
+      <div class="ep-eyebrow reveal">
+        <span class="dot"></span>
+        TRXL Podcast
+        <span class="dot dot-sm"></span>
+        <span class="num" id="heroEpNum"></span>
+        <span class="dot dot-sm"></span>
+        <span id="heroDate"></span>
+      </div>
+      <h1 class="reveal delay-1" id="heroTitle"></h1>
+      <p class="ep-hero-subtitle reveal delay-2" id="heroSubtitle"></p>
+      <div class="ep-guest ep239-roster-badge reveal delay-3">
+        <div class="ep-guest-text">
+          <div class="ep-guest-name" id="heroGuestName"></div>
+          <div class="ep-guest-role" id="heroGuestRole"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================
+       CENTRAL ARGUMENT
+       ======================================================== -->
+  <section class="ep-section ep-argument">
+    <div class="ep-container">
+      <div class="ep-kicker reveal"><span>The central argument</span> <span class="idx">01 / 07</span></div>
+      <div class="reveal delay-1">
+        <p id="argumentText"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       PULL QUOTE
+       ======================================================== -->
+  <section class="ep-quote">
+    <div class="ep-container">
+      <blockquote class="reveal" id="quoteText"></blockquote>
+      <span class="ep-attr reveal delay-1" id="quoteAttr"></span>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       STATS
+       ======================================================== -->
+  <section class="ep-section">
+    <div class="ep-container-wide">
+      <div class="ep-kicker reveal"><span>By the numbers</span> <span class="idx">02 / 07</span></div>
+      <div class="ep-stats-grid reveal delay-1" id="statsGrid"></div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       QUESTION
+       ======================================================== -->
+  <section class="ep-question">
+    <div class="ep-container">
+      <div class="reveal">
+        <div class="mark">?</div>
+        <p id="questionText"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       ANALYSIS
+       ======================================================== -->
+  <section class="ep-section">
+    <div class="ep-container">
+      <div class="ep-kicker reveal"><span>Episode analysis</span> <span class="idx">03 / 07</span></div>
+      <div class="ep-analysis" id="analysisList"></div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       TAKEAWAYS
+       ======================================================== -->
+  <section class="ep-section ep-takeaways">
+    <div class="ep-container-wide">
+      <div class="ep-kicker reveal"><span>Practical takeaways</span> <span class="idx">04 / 07</span></div>
+      <div class="ep-takeaways-grid reveal delay-1" id="takeawaysGrid"></div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       INSIGHTS
+       ======================================================== -->
+  <section class="ep-section ep-insights-section" id="insightsSection">
+    <div class="ep-container">
+      <div class="ep-kicker reveal"><span id="insightsKicker">Key insights</span> <span class="idx">05 / 07</span></div>
+      <p class="ep239-insights-note reveal delay-1" id="insightsNote"></p>
+
+      <!-- Plain list: the no-JS fallback and the PDF/print version -->
+      <div class="ep-insights" id="insightsList"></div>
+
+      <!-- Swipeable card stack: screen only, built by JS -->
+      <div class="ep-stack-wrap">
+        <div class="ep-stack" id="epStack" role="group" aria-roledescription="carousel" aria-label="Key insights"></div>
+        <div class="ep-stack-controls">
+          <button class="ep-stack-btn" id="stackPrev" aria-label="Previous insight">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          </button>
+          <div class="ep-stack-dots" id="stackDots"></div>
+          <button class="ep-stack-btn" id="stackNext" aria-label="Next insight">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+        <div class="ep-stack-hint">Drag a card · or use ← →</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       BOTTOM LINE
+       ======================================================== -->
+  <section class="ep-section ep-bottomline">
+    <div class="ep-container">
+      <div class="ep-kicker reveal"><span>The bottom line</span> <span class="idx">06 / 07</span></div>
+      <div class="ep-bottomline-grid">
+        <div class="ep-bottomline-portrait ep239-roster reveal" id="bottomPortraitBlock">
+          <div class="ep239-roster-label">Who answered</div>
+          <ul class="ep239-roster-list" id="rosterList"></ul>
+        </div>
+        <div class="ep-bottomline-text">
+          <p class="reveal delay-1" id="bottomLineText"></p>
+          <div class="closing reveal delay-2" id="closingQuoteText"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       CTA
+       ======================================================== -->
+  <section class="ep-cta" id="listen">
+    <div class="ep-container">
+      <div class="ep-kicker reveal" style="justify-content:center"><span>Full episode</span> <span class="idx">07 / 07</span></div>
+      <h2 class="reveal delay-1">Hear all eleven answers</h2>
+      <div class="ep-cta-buttons reveal delay-2">
+        <a id="ctaListen" class="ep-btn ep-btn-primary" href="#" target="_blank" rel="noopener">
+          Listen to episode
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a id="ctaNewsletter" class="ep-btn ep-btn-ghost" href="#" target="_blank" rel="noopener">
+          Read the newsletter
+        </a>
+      </div>
+      <p class="ep239-access reveal delay-3" id="accessNote"></p>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       SERIES PARTNERS — Graitec (foundation) + AVAIL (supporting)
+       Logos swap light/dark with the theme, see updateLogo()
+       ======================================================== -->
+  <section class="ep239-sponsors">
+    <div class="ep-container">
+      <div class="ep239-sponsor-row reveal">
+        <div class="ep239-sponsor">
+          <div class="ep239-sponsor-tier">Foundation Partner</div>
+          <a class="ep239-sponsor-logo" href="https://graitec.com/us" target="_blank" rel="noopener">
+            <img id="graitecLogo" src="assets/sponsors/graitec-white.png" alt="Graitec">
+          </a>
+          <p>Graitec provides AEC software, training, and expert support to help architects, engineers, and construction teams design, build, and manage projects more effectively.</p>
+        </div>
+
+        <div class="ep239-sponsor">
+          <div class="ep239-sponsor-tier">Supporting Sponsor</div>
+          <a class="ep239-sponsor-logo" href="https://getavail.com/capital-resources/" target="_blank" rel="noopener">
+            <img id="availLogo" src="assets/sponsors/avail-white.svg" alt="AVAIL">
+          </a>
+          <p>AVAIL's content management system helps architecture and engineering teams find, manage, and reuse their Revit, AutoCAD, Civil 3D, and other technical content in one place.</p>
+        </div>
+      </div>
+      <p class="ep239-sponsor-note reveal delay-1">
+        The Next AEC Tech Stack is nine episodes across three arcs. These partners funded it so it could be free for everyone.
+      </p>
+    </div>
+  </section>
+
+  <footer class="ep-footer">
+    <div class="ep-footer-brand">
+      <img class="ep-footer-mark" src="assets/favicon.png" alt="TRXL" />
+      <span>TRXL Podcast</span>
+      <span class="dot">·</span>
+      <span>Architecture × Technology</span>
+    </div>
+  </footer>
+
+  <!-- ========================================================
+       TWEAKS PANEL
+       ======================================================== -->
+  <div class="tweaks-panel" id="tweaksPanel" aria-hidden="true">
+    <div class="tweaks-title">Tweaks</div>
+    <div class="tweaks-row">
+      <span class="tweaks-label">Theme</span>
+      <div class="tweaks-opts" data-control="theme">
+        <button class="tweaks-chip" data-value="dark">Dark</button>
+        <button class="tweaks-chip" data-value="light">Light</button>
+      </div>
+    </div>
+    <div class="tweaks-row">
+      <span class="tweaks-label">Accent</span>
+      <div class="tweaks-opts" data-control="accent">
+        <button class="tweaks-swatch" data-value="coral" title="Coral"></button>
+        <button class="tweaks-swatch" data-value="plum" title="Plum"></button>
+        <button class="tweaks-swatch" data-value="indigo" title="Indigo"></button>
+      </div>
+    </div>
+    <div class="tweaks-row">
+      <span class="tweaks-label">Motion</span>
+      <div class="tweaks-opts" data-control="motion">
+        <button class="tweaks-chip" data-value="on">On</button>
+        <button class="tweaks-chip" data-value="off">Off</button>
+      </div>
+    </div>
+    <div class="tweaks-row">
+      <span class="tweaks-label">Density</span>
+      <div class="tweaks-opts" data-control="density">
+        <button class="tweaks-chip" data-value="spacious">Spacious</button>
+        <button class="tweaks-chip" data-value="compact">Compact</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       CONTENT + LOGIC
+       ======================================================== -->
+  <!-- UPDATE THIS to point at the new episode content file -->
+  <script src="content/episode-239.js"></script>
+  <script>
+    /* ----- Tweakable defaults (rewritable by host) ----- */
+    const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+      "theme": "dark",
+      "accent": "coral",
+      "motion": "on",
+      "density": "spacious"
+    }/*EDITMODE-END*/;
+
+    const state = { ...TWEAK_DEFAULTS };
+
+    /* ----- Render content ----- */
+    const ep = window.TRXL_EPISODE;
+
+    /* Timestamp citations — "13:50" or "1:08:30" into a YouTube deep link.
+       Single source of truth is the display string in the content file. */
+    function citeSeconds(ts) {
+      const p = ts.split(':').map(Number);
+      return p.length === 3 ? p[0]*3600 + p[1]*60 + p[2] : p[0]*60 + p[1];
+    }
+    /* A cite renders as the speaker's hedcut with a speech bubble beside it.
+       Accepts { ts, who } or a bare "mm:ss" string. */
+    function personBy(name) {
+      return (ep.roster.people || []).find(p => p.name === name);
+    }
+    function citeLink(cite) {
+      const ts  = typeof cite === 'string' ? cite : cite.ts;
+      const who = typeof cite === 'string' ? null : cite.who;
+      const p   = who ? personBy(who) : null;
+      const avatar = p && p.avatar
+        ? `<span class="ep239-cite-face"><img src="${p.avatar}" alt="" loading="lazy"></span>`
+        : '';
+      return `<a class="ep239-cite" href="${ep.youtube}?t=${citeSeconds(ts)}"
+        target="_blank" rel="noopener"
+        title="${who ? who + ' — ' : ''}watch this moment on YouTube">
+        ${avatar}
+        <span class="ep239-cite-bubble">
+          ${who ? `<span class="ep239-cite-who">${who}</span>` : ''}
+          <span class="ep239-cite-ts">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>${ts}
+          </span>
+        </span></a>`;
+    }
+    function render() {
+      // Nav
+      document.getElementById('epNavNum').textContent = ep.number;
+      document.getElementById('epNavDate').textContent = ep.date;
+
+      // Hero
+      document.getElementById('heroEpNum').textContent = 'Ep ' + ep.number;
+      document.getElementById('heroDate').textContent = ep.date;
+      // Smart title: wrap last word in <em> for gradient highlight
+      const title = ep.title;
+      const parts = title.split(' ');
+      const emIdx = ep.titleEm ? parts.indexOf(ep.titleEm) : parts.length - 2;
+      if (parts.length > 2 && emIdx > -1) {
+        parts[emIdx] = `<em>${parts[emIdx]}</em>`;
+        document.getElementById('heroTitle').innerHTML = parts.join(' ');
+      } else {
+        document.getElementById('heroTitle').textContent = title;
+      }
+      document.getElementById('heroSubtitle').textContent = ep.subtitle;
+
+      // Roundup episode — `roster` replaces guest portraits with a name list.
+      // Ep 239 puts one question to eleven people; there is no single guest.
+      document.getElementById('heroGuestName').textContent = ep.roster.badge;
+      document.getElementById('heroGuestRole').textContent = ep.roster.line;
+
+      // Central argument
+      document.getElementById('argumentText').textContent = ep.centralArgument;
+
+      // Quote
+      document.getElementById('quoteText').textContent = `"${ep.pullQuote.text}"`;
+      document.getElementById('quoteAttr').innerHTML = '— ' + ep.pullQuote.attribution
+        + (ep.pullQuote.cite ? citeLink(ep.pullQuote.cite) : '');
+
+      // Stats
+      const statsGrid = document.getElementById('statsGrid');
+      statsGrid.innerHTML = ep.stats.map((s, i) => `
+        <div class="ep-stat">
+          <span class="ep-stat-index">0${i+1}</span>
+          <span class="ep-stat-num" data-value="${s.value}">${s.value}</span>
+          <div class="ep-stat-label">${s.label}</div>
+          ${s.cite ? citeLink(s.cite) : ''}
+        </div>
+      `).join('');
+
+      // Question
+      document.getElementById('questionText').textContent = ep.question;
+
+      // Analysis
+      document.getElementById('analysisList').innerHTML = ep.analysis.map((a, i) => `
+        <div class="ep-analysis-card">
+          <div class="ep-analysis-idx">0${i+1}</div>
+          <div>
+            <h3>${a.title}</h3>
+            <p>${a.body}</p>
+            ${a.cites ? `<div class="ep239-cites">
+              <span class="ep239-cites-label">Hear it in the episode</span>
+              ${a.cites.map(c => citeLink(c)).join('')}
+            </div>` : ''}
+          </div>
+        </div>
+      `).join('');
+
+      // Takeaways
+      document.getElementById('takeawaysGrid').innerHTML = ep.takeaways.map((t, i) => `
+        <div class="ep-takeaway">
+          <span class="ep-takeaway-num">Step 0${i+1}</span>
+          <p>${t}</p>
+        </div>
+      `).join('');
+
+      // Insights
+      if (ep.insightsKicker) document.getElementById('insightsKicker').textContent = ep.insightsKicker;
+      document.getElementById('insightsNote').textContent = ep.insightsNote || '';
+      document.getElementById('insightsList').innerHTML = ep.insights.map((ins, i) => `
+        <div class="ep-insight reveal">
+          <div class="ep-insight-num">${String(i+1).padStart(2,"0")}</div>
+          <div class="ep-insight-body">
+            <h4>${ins.title}</h4>
+            <p>${ins.body}</p>
+            ${ins.prompt ? `<p class="ep239-prompt">${ins.prompt}</p>` : ''}
+            ${ins.cite ? citeLink(ins.cite) : ''}
+          </div>
+          <div class="ep-insight-mark"></div>
+        </div>
+      `).join('');
+
+      // Bottom line
+      document.getElementById('bottomLineText').textContent = ep.bottomLine;
+      document.getElementById('closingQuoteText').innerHTML = '"' + ep.closingQuote + '"'
+        + (ep.closingQuoteCite ? citeLink(ep.closingQuoteCite) : '');
+
+      // Roster list — replaces the portrait block for roundup episodes
+      document.getElementById('rosterList').innerHTML = ep.roster.people.map(p => `
+        <li>
+          ${p.avatar ? `<span class="ep239-roster-face"><img src="${p.avatar}" alt="" loading="lazy"></span>` : ''}
+          <span class="ep239-roster-text">
+            <span class="ep239-roster-name">${p.name}</span>
+            <span class="ep239-roster-firm">${p.firm}</span>
+          </span>
+        </li>
+      `).join('');
+
+      // CTA
+      document.getElementById('accessNote').textContent = ep.access || '';
+      document.getElementById('ctaListen').href = ep.links.listen;
+      document.getElementById('ctaNewsletter').href = ep.links.newsletter;
+
+      // Page title
+      document.title = `TRXL ${ep.number} — ${ep.title}`;
+
+      // Logo should swap with theme
+      updateLogo();
+    }
+    function updateLogo() {
+      const light = state.theme === 'light';
+      document.getElementById('epNavLogo').src =
+        light ? 'assets/logo-black.png' : 'assets/logo-white.png';
+      // Sponsor marks ship in two variants — the white ones vanish on paper.
+      document.getElementById('graitecLogo').src =
+        light ? 'assets/sponsors/graitec-black.png' : 'assets/sponsors/graitec-white.png';
+      document.getElementById('availLogo').src =
+        light ? 'assets/sponsors/avail-teal.svg' : 'assets/sponsors/avail-white.svg';
+    }
+
+    /* ----- Reveal on scroll -----
+       Fallback to a plain scroll listener: IntersectionObserver has been
+       unreliable inside our preview iframe (never fires even with the
+       target clearly on-screen). This always runs in the same frame the
+       user can see the element. */
+    function setupReveal() {
+      const items = Array.from(document.querySelectorAll('.reveal'));
+      if (state.motion === 'off') {
+        document.documentElement.classList.remove('js-motion');
+        items.forEach(el => el.classList.add('is-in'));
+        return;
+      }
+      document.documentElement.classList.add('js-motion');
+      const check = () => {
+        const vh = window.innerHeight;
+        for (const el of items) {
+          if (el.classList.contains('is-in')) continue;
+          const r = el.getBoundingClientRect();
+          if (r.top < vh - 80 && r.bottom > 0) el.classList.add('is-in');
+        }
+      };
+      check();
+      window.addEventListener('scroll', check, { passive: true });
+      window.addEventListener('resize', check);
+    }
+
+    /* ----- Stat counter animation ----- */
+    function animateStats() {
+      const nums = document.querySelectorAll('.ep-stat-num');
+      nums.forEach(el => {
+        const final = el.dataset.value;
+        // Extract numeric part
+        const match = final.match(/([\d.]+)/);
+        if (!match || state.motion === 'off') { el.textContent = final; return; }
+        const target = parseFloat(match[1]);
+        const prefix = final.substring(0, match.index);
+        const suffix = final.substring(match.index + match[1].length);
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach(e => {
+            if (!e.isIntersecting) return;
+            io.unobserve(el);
+            const dur = 1400;
+            const start = performance.now();
+            const hasDecimal = match[1].includes('.');
+            function frame(now) {
+              const t = Math.min(1, (now - start) / dur);
+              const eased = 1 - Math.pow(1 - t, 3);
+              const v = target * eased;
+              el.textContent = prefix + (hasDecimal ? v.toFixed(1) : Math.round(v)) + suffix;
+              if (t < 1) requestAnimationFrame(frame); else el.textContent = final;
+            }
+            requestAnimationFrame(frame);
+          });
+        }, { threshold: 0.4 });
+        io.observe(el);
+      });
+    }
+
+    /* ----- Nav scroll progress ----- */
+    function setupNavScroll() {
+      const nav = document.getElementById('epNav');
+      const progress = document.getElementById('epNavProgress');
+      function onScroll() {
+        const y = window.scrollY;
+        nav.classList.toggle('is-scrolled', y > 10);
+        const h = document.documentElement.scrollHeight - window.innerHeight;
+        const p = h > 0 ? Math.min(1, y / h) : 0;
+        progress.style.setProperty('--scroll-progress', p);
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    }
+
+    /* ----- Tweaks controls ----- */
+    function applyState() {
+      document.documentElement.dataset.theme = state.theme;
+      document.documentElement.dataset.accent = state.accent;
+      document.documentElement.dataset.density = state.density;
+      document.documentElement.dataset.motion = state.motion;
+      // Update chip active states
+      document.querySelectorAll('.tweaks-opts').forEach(group => {
+        const key = group.dataset.control;
+        group.querySelectorAll('[data-value]').forEach(b => {
+          b.classList.toggle('is-active', b.dataset.value === state[key]);
+        });
+      });
+      updateLogo();
+    }
+    function setupTweaks() {
+      document.querySelectorAll('.tweaks-opts').forEach(group => {
+        const key = group.dataset.control;
+        group.querySelectorAll('[data-value]').forEach(b => {
+          b.addEventListener('click', () => {
+            state[key] = b.dataset.value;
+            applyState();
+            window.parent.postMessage({ type: '__edit_mode_set_keys', edits: { [key]: state[key] } }, '*');
+          });
+        });
+      });
+
+      // Edit-mode protocol
+      window.addEventListener('message', (e) => {
+        if (!e.data || !e.data.type) return;
+        if (e.data.type === '__activate_edit_mode') {
+          document.getElementById('tweaksPanel').classList.add('is-open');
+        } else if (e.data.type === '__deactivate_edit_mode') {
+          document.getElementById('tweaksPanel').classList.remove('is-open');
+        }
+      });
+      window.parent.postMessage({ type: '__edit_mode_available' }, '*');
+    }
+
+    /* ----- Key insights as a swipeable card stack -----
+       Screen only. If this never runs, the plain list stays visible. */
+    function setupInsightStack() {
+      const items = ep.insights;
+      const stage = document.getElementById('epStack');
+      const dotsEl = document.getElementById('stackDots');
+      const N = items.length;
+
+      // order[0] is the top card. Advancing rotates the array.
+      let order = items.map((_, i) => i);
+
+      stage.innerHTML = items.map((ins, i) => `
+        <article class="ep-card" data-i="${i}" aria-label="Insight ${i + 1} of ${N}">
+          <div class="ep-card-head">
+            <span class="ep-card-num">${String(i + 1).padStart(2,"0")}</span>
+            <span class="ep-card-of">Key insight</span>
+          </div>
+          <div>
+            <h4>${ins.title}</h4>
+            <p>${ins.body}</p>
+            ${ins.prompt ? `<p class="ep239-prompt">${ins.prompt}</p>` : ''}
+            ${ins.cite ? citeLink(ins.cite) : ''}
+          </div>
+          <div class="ep-card-rule"></div>
+        </article>
+      `).join('');
+
+      dotsEl.innerHTML = items.map((ins, i) =>
+        `<button class="ep-stack-dot" data-i="${i}" aria-label="Go to insight ${i + 1}: ${ins.title}"></button>`
+      ).join('');
+
+      const cards = [...stage.querySelectorAll('.ep-card')];
+      const dots  = [...dotsEl.querySelectorAll('.ep-stack-dot')];
+
+      function layout() {
+        order.forEach((cardIdx, pos) => {
+          const card = cards[cardIdx];
+          card.dataset.pos = pos;
+          card.style.zIndex = N - pos;
+          card.style.opacity = pos > 3 ? 0 : 1 - pos * 0.16;
+          card.style.transform = `translate3d(0, ${pos * 30}px, 0) scale(${1 - pos * 0.05})`;
+          card.setAttribute('aria-hidden', pos === 0 ? 'false' : 'true');
+        });
+        dots.forEach((d, i) => d.classList.toggle('is-active', i === order[0]));
+      }
+
+      // Fly the top card out, then send it to the back (dir: 1 right, -1 left)
+      function advance(dir) {
+        const card = cards[order[0]];
+        card.style.transition = 'transform 340ms var(--ep-ease), opacity 340ms linear';
+        card.style.transform = `translate3d(${dir * 620}px, -40px, 0) rotate(${dir * 18}deg)`;
+        card.style.opacity = 0;
+        order = [...order.slice(1), order[0]];
+        setTimeout(() => { card.style.transition = ''; layout(); }, 320);
+        layout();
+      }
+
+      // Pull the last card back to the front from the side it left
+      function retreat() {
+        const last = order[N - 1];
+        order = [last, ...order.slice(0, N - 1)];
+        const card = cards[last];
+        card.style.transition = 'none';
+        card.style.transform = 'translate3d(-620px, -40px, 0) rotate(-18deg)';
+        card.style.opacity = 0;
+        requestAnimationFrame(() => { card.style.transition = ''; layout(); });
+      }
+
+      function goTo(target) {
+        let guard = 0;
+        while (order[0] !== target && guard++ < N) advance(1);
+      }
+
+      let drag = null;
+      stage.addEventListener('pointerdown', (e) => {
+        // Let links and buttons inside a card be clicked. Starting a drag here
+        // captures the pointer, which swallows the click on the cite link.
+        if (e.target.closest('a, button')) return;
+        const card = e.target.closest('.ep-card');
+        if (!card || card.dataset.pos !== '0') return;
+        drag = { id: e.pointerId, x0: e.clientX, y0: e.clientY, card, dx: 0 };
+        card.classList.add('is-dragging');
+        card.setPointerCapture(e.pointerId);
+      });
+
+      stage.addEventListener('pointermove', (e) => {
+        if (!drag || e.pointerId !== drag.id) return;
+        drag.dx = e.clientX - drag.x0;
+        const dy = (e.clientY - drag.y0) * 0.25;
+        drag.card.style.transform =
+          `translate3d(${drag.dx}px, ${dy}px, 0) rotate(${drag.dx * 0.045}deg)`;
+        drag.card.style.setProperty('--tint', Math.min(Math.abs(drag.dx) / 140, 1));
+        drag.card.style.setProperty('--tint-x', drag.dx > 0 ? '85%' : '15%');
+      });
+
+      function endDrag(e) {
+        if (!drag || (e && e.pointerId !== drag.id)) return;
+        const { card, dx } = drag;
+        card.classList.remove('is-dragging');
+        card.style.removeProperty('--tint');
+        drag = null;
+        if (Math.abs(dx) > 110) advance(Math.sign(dx));
+        else layout();                       // snap back
+      }
+      stage.addEventListener('pointerup', endDrag);
+      stage.addEventListener('pointercancel', endDrag);
+
+      document.getElementById('stackNext').addEventListener('click', () => advance(1));
+      document.getElementById('stackPrev').addEventListener('click', retreat);
+      dots.forEach((d) => d.addEventListener('click', () => goTo(+d.dataset.i)));
+
+      stage.tabIndex = 0;
+      stage.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') { advance(1); e.preventDefault(); }
+        if (e.key === 'ArrowLeft')  { retreat();  e.preventDefault(); }
+      });
+
+      layout();
+      document.getElementById('insightsSection').classList.add('has-stack');
+    }
+
+    /* ----- Go ----- */
+    render();
+    applyState();
+    setupReveal();
+    animateStats();
+    setupNavScroll();
+    setupTweaks();
+    setupInsightStack();
+  </script>
+</body>
+</html>
