@@ -78,9 +78,9 @@ window.TRXL_EPISODE = {
   },
 
   stats: [
-    { value: "70%", label: "peak adoption Bimbeats measured on a real AutoCAD-to-Civil 3D migration, then it flatlined", cite: { ts: "1:56:03", who: "Matt Wash" } },
+    { value: "70%", label: "peak adoption Bimbeats measured on a real AutoCAD-to-Civil 3D migration, then it flatlined", cite: { ts: "1:53:18", who: "Matt Wash" } },
     { value: "11", label: "voices asked the same question about what switching platforms actually costs" },
-    { value: "10%", label: "of firm revenue Randall Stevens calls a reasonable software spend, before training and disruption", cite: { ts: "1:50:48", who: "Randall Stevens" } },
+    { value: "10%", label: "of firm revenue Randall Stevens calls a reasonable software spend, before training and disruption", cite: { ts: "1:38:32", who: "Randall Stevens" } },
   ],
 
   question:
@@ -100,15 +100,15 @@ window.TRXL_EPISODE = {
       title: "The plateau nobody predicted",
       body: "Bimbeats measures tool usage down to the window title, which let Matt Wash show a real firm's AutoCAD-to-Civil 3D migration climb from thirty to seventy percent over eighteen months, then flatline completely. Ariel Cooke-Zamora reframed the flatline as the actual finding: the people still on the old tool aren't a training problem, they're a different problem that needs a different lever.",
       cites: [
-        { ts: "1:56:03", who: "Matt Wash" },
-        { ts: "1:58:59", who: "Ariel Cooke-Zamora" },
+        { ts: "1:55:58", who: "Matt Wash" },
+        { ts: "1:57:53", who: "Ariel Cooke-Zamora" },
       ],
     },
     {
       title: "A Catch-22 with no easy exit",
       body: "Campbell Yule laid out the structural bind underneath every BIM 2.0 pitch: a new tool has to survive inside the world of the one it's replacing before it can generate the revenue that would ever let it escape. Carl Christensen's answer from inside Autodesk reads as the direct counter — building for a platform and an ecosystem, not a monolith, so customers can adopt new tools without leaving the old ones behind.",
       cites: [
-        { ts: "2:13:59", who: "Campbell Yule" },
+        { ts: "2:09:06", who: "Campbell Yule" },
         { ts: "1:35:58", who: "Carl Christensen" },
       ],
     },
@@ -135,7 +135,7 @@ window.TRXL_EPISODE = {
       title: "Carrying capacity has a ceiling",
       body: "Everybody can write software now, but a firm can only actively manage so many tools before it just has to stop adding more.",
       prompt: "How many genuinely new tools has your firm adopted this year, versus just trialed?",
-      cite: { ts: "15:58", who: "Randall Stevens" },
+      cite: { ts: "15:39", who: "Randall Stevens" },
     },
     {
       title: "Nobody wants the magic button, they just think they do",
@@ -147,13 +147,13 @@ window.TRXL_EPISODE = {
       title: "The dashboard that flags burnout risk",
       body: "Connecting an LLM to a firm's time-tracking data turned an invisible wellbeing problem into a 90-day report naming exactly who's most at risk.",
       prompt: "Would your firm rather find this out from a dashboard, or from an exit interview?",
-      cite: { ts: "2:04:14", who: "Matt Wash" },
+      cite: { ts: "2:03:53", who: "Matt Wash" },
     },
     {
       title: "You don't feel your own screen time either",
       body: "Ariel compares BIMbeats to a phone's screen-time report: nobody thinks they need it until the number actually shows up.",
       prompt: "If someone measured your team's real tool-switching today, would the number surprise you?",
-      cite: { ts: "2:07:39", who: "Ariel Cooke-Zamora" },
+      cite: { ts: "2:06:54", who: "Ariel Cooke-Zamora" },
     },
     {
       title: "The one incumbent that's actually vulnerable",
@@ -165,7 +165,7 @@ window.TRXL_EPISODE = {
       title: "Nobody asked for the PDF button",
       body: "The feature that actually moved adoption at Finch wasn't the AI agent, it was letting people export a plain PDF straight out of the browser.",
       prompt: "What's the boring feature in your stack that quietly removed the most friction?",
-      cite: { ts: "2:24:02", who: "Jesper Wallgren" },
+      cite: { ts: "2:22:41", who: "Jesper Wallgren" },
     },
     {
       title: "The software that keeps up with you",
@@ -177,7 +177,7 @@ window.TRXL_EPISODE = {
       title: "They deleted the old software on purpose",
       body: "One Graphisoft client uninstalled AutoCAD from every machine during a migration, specifically so nobody could quietly fall back to it.",
       prompt: "Would your firm ever go that far, or is the old tool always one click away?",
-      cite: { ts: "2:36:37", who: "Holger Kreienbrink" },
+      cite: { ts: "2:35:40", who: "Holger Kreienbrink" },
     },
     {
       title: "Culture eats strategy for lunch",
@@ -189,7 +189,7 @@ window.TRXL_EPISODE = {
       title: "Some firms delete the model on purpose",
       body: "Dimitrie described teams intentionally deleting a Revit model before handoff, specifically so a messy file can't come back to bite them legally.",
       prompt: "Is your firm's instinct to share work in progress, or to protect it?",
-      cite: { ts: "1:29:53", who: "Dimitrie Stefanescu" },
+      cite: { ts: "1:29:14", who: "Dimitrie Stefanescu" },
     },
     {
       title: "Nobody paid him to get good",
