@@ -768,7 +768,9 @@ input[type=date]{-webkit-appearance:none; appearance:none; min-width:0; max-widt
     box.hidden = false;
     var html = '<p><strong>Where to go next.</strong> The AIA\'s AI Firm Toolkit measures a '
       + 'different thing than we did today — governance maturity, not knowledge flow. Once this '
-      + 'pilot is running, it\'s the right next stop:</p><ul>';
+      + 'pilot is running, it\'s the right next stop. One note: some of the toolkit\'s own prose '
+      + 'reads AI-generated and hasn\'t been fully edited — treat it as a scaffold, verify before '
+      + 'you adopt language wholesale. (Same rule as your Trust link, applied to the toolkit itself.)</p><ul>';
     if (byLink) html += '<li>Your worst link (<strong>' + state.worst + '</strong>) → <a href="' + AIA_BASE + byLink.hash + '" target="_blank" rel="noopener">' + byLink.label + '</a></li>';
     if (byPillar) html += '<li>Your lowest pillar (<strong>' + state.pillar + '</strong>) → <a href="' + AIA_BASE + byPillar.hash + '" target="_blank" rel="noopener">' + byPillar.label + '</a></li>';
     if (aiaNeedsPolicyTemplate()) html += '<li>Need a written AI policy? AIA has downloadable sample policies (short ~2pg, detailed ~6pg) under Policy, Ethics, Contracts & Legislation → <a href="' + AIA_BASE + '#policy" target="_blank" rel="noopener">' + AIA_BASE + '#policy</a></li>';
