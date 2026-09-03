@@ -1,0 +1,1298 @@
+/* =========================================================================
+   TRXL Episode Infographic — styles
+   Dark dramatic variant mapped onto TRXL oxblood / nightshade (TRXL+).
+   ------------------------------------------------------------------------- */
+
+:root {
+  /* Dark canvas — inspired by TRXL+ oxblood / nightshade */
+  --ep-bg:         #0E0B12;
+  --ep-bg-2:       #14101A;
+  --ep-bg-3:       #1B1624;
+  --ep-bg-4:       #241C30;
+  --ep-border:     #2A2336;
+  --ep-border-2:   #3A2F4A;
+
+  --ep-fg:         #EFEAE1;   /* warm paper-ink on dark */
+  --ep-fg-2:       #B9B2A7;
+  --ep-fg-3:       #7B7484;
+  --ep-fg-4:       #4E4857;
+
+  /* Accent — cycles via data-accent on <html> */
+  --ep-accent:      var(--trxl-coral);
+  --ep-accent-2:    var(--trxl-plum);
+  --ep-accent-3:    var(--trxl-indigo);
+  --ep-accent-dim:  rgba(235, 79, 93, 0.10);
+  --ep-accent-ring: rgba(235, 79, 93, 0.35);
+  --ep-grad:        linear-gradient(45deg, var(--ep-accent) 0%, var(--ep-accent-2) 48%, var(--ep-accent-3) 100%);
+
+  --ep-max: 860px;
+  --ep-wide: 1200px;
+
+  --ep-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ep-ease-inout: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+[data-accent="plum"] {
+  --ep-accent:     #C54566;
+  --ep-accent-2:   #9C3B6E;
+  --ep-accent-3:   #7D4584;
+  --ep-accent-dim: rgba(156, 59, 110, 0.12);
+  --ep-accent-ring: rgba(156, 59, 110, 0.38);
+  --ep-grad: linear-gradient(45deg, #C54566 0%, #9C3B6E 48%, #614F9B 100%);
+}
+[data-accent="indigo"] {
+  --ep-accent:     #7A6AC2;
+  --ep-accent-2:   #614F9B;
+  --ep-accent-3:   #3D355A;
+  --ep-accent-dim: rgba(97, 79, 155, 0.14);
+  --ep-accent-ring: rgba(97, 79, 155, 0.40);
+  --ep-grad: linear-gradient(45deg, #7A6AC2 0%, #614F9B 48%, #3D355A 100%);
+}
+
+/* ---------- Light mode ---------- */
+[data-theme="light"] {
+  --ep-bg:        #F7F6F3;   /* TRXL paper */
+  --ep-bg-2:      #FBFAF7;
+  --ep-bg-3:      #FFFFFF;
+  --ep-bg-4:      #EDEDF0;
+  --ep-border:    #E4E0D8;
+  --ep-border-2:  #D6D0C4;
+  --ep-fg:        #0A0A0B;
+  --ep-fg-2:      #4A4A52;
+  --ep-fg-3:      #6E6E78;
+  --ep-fg-4:      #9A9AA4;
+}
+
+/* =========================================================================
+   Base
+   ------------------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-family: var(--font-sans); scroll-behavior: smooth; }
+body {
+  background: var(--ep-bg);
+  color: var(--ep-fg);
+  font-size: 17px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  transition: background var(--dur-slow) var(--ep-ease), color var(--dur-slow) var(--ep-ease);
+}
+
+img { max-width: 100%; display: block; }
+
+::selection { background: var(--ep-accent-2); color: #fff; }
+
+/* =========================================================================
+   Layout helpers
+   ------------------------------------------------------------------------- */
+.ep-container { max-width: var(--ep-max); margin: 0 auto; padding: 0 24px; }
+.ep-container-wide { max-width: var(--ep-wide); margin: 0 auto; padding: 0 24px; }
+
+/* Reveal-on-scroll: JS adds .js-motion to <html> which hides .reveal until .is-in */
+html.js-motion .reveal { opacity: 0; transform: translateY(18px); transition: opacity 700ms var(--ep-ease), transform 700ms var(--ep-ease); }
+html.js-motion .reveal.is-in { opacity: 1; transform: none; }
+.reveal.delay-1 { transition-delay: 80ms; }
+.reveal.delay-2 { transition-delay: 160ms; }
+.reveal.delay-3 { transition-delay: 240ms; }
+.reveal.delay-4 { transition-delay: 320ms; }
+.reveal.delay-5 { transition-delay: 400ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  html { scroll-behavior: auto; }
+}
+
+/* =========================================================================
+   Sticky nav
+   ------------------------------------------------------------------------- */
+.ep-nav {
+  position: sticky; top: 0; z-index: 40;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  background: color-mix(in oklab, var(--ep-bg) 80%, transparent);
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--dur) var(--ep-ease), background var(--dur) var(--ep-ease);
+}
+.ep-nav.is-scrolled { border-bottom-color: var(--ep-border); }
+.ep-nav-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 24px; max-width: var(--ep-wide); margin: 0 auto;
+  gap: 24px;
+}
+.ep-nav-left { display: flex; align-items: center; gap: 14px; }
+.ep-nav-logo { height: 22px; width: auto; display: block; }
+.ep-nav-ep {
+  font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em;
+  color: var(--ep-fg-3);
+}
+.ep-nav-ep strong { color: var(--ep-fg); font-weight: 500; }
+.ep-nav-right { display: flex; align-items: center; gap: 8px; }
+.ep-nav-progress {
+  position: absolute; left: 0; right: 0; bottom: -1px; height: 2px;
+  background: var(--ep-grad);
+  transform-origin: left;
+  transform: scaleX(var(--scroll-progress, 0));
+  transition: transform 80ms linear;
+}
+
+/* =========================================================================
+   HERO — signature "asteroid" moment
+   ------------------------------------------------------------------------- */
+.ep-hero {
+  position: relative;
+  padding: 96px 0 120px;
+  overflow: hidden;
+  border-bottom: 1px solid var(--ep-border);
+}
+
+.ep-hero-sky {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% 100%, color-mix(in oklab, var(--ep-accent-3) 30%, transparent) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 40% at 80% 80%, color-mix(in oklab, var(--ep-accent-2) 18%, transparent) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 40% at 20% 90%, color-mix(in oklab, var(--ep-accent) 14%, transparent) 0%, transparent 60%);
+  pointer-events: none;
+}
+[data-theme="light"] .ep-hero-sky {
+  background:
+    radial-gradient(ellipse 80% 50% at 50% 100%, color-mix(in oklab, var(--ep-accent-3) 18%, transparent) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 40% at 80% 80%, color-mix(in oklab, var(--ep-accent-2) 10%, transparent) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 40% at 20% 90%, color-mix(in oklab, var(--ep-accent) 8%, transparent) 0%, transparent 60%);
+}
+
+/* ========================================================================
+   EP 240 — the deadline that doesn't move
+   The episode's real tension isn't a boundary AI shouldn't cross, it's
+   whether a tool actually buys you time before Friday or just gives you
+   more hours' worth of options to fill. A ring fills toward "full" and
+   never empties back to zero — representing hours consumed, not freed —
+   while a fixed bright notch at 12 o'clock marks the deadline itself,
+   which never moves, and a thin hand sweeps past it continuously,
+   indifferent to how full the ring gets.
+   ======================================================================== */
+.ep240-clock-frame {
+  position: absolute; inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+  display: flex; align-items: center; justify-content: center;
+  animation: ep240-enter 1400ms var(--ep-ease) both;
+}
+.ep240-clock-sky {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(180deg,
+      color-mix(in oklab, var(--ep-bg) 100%, #000) 0%,
+      color-mix(in oklab, var(--ep-bg-2) 92%, #000) 55%,
+      color-mix(in oklab, var(--ep-bg) 100%, #000) 100%);
+}
+.ep240-clock-dial-wrap {
+  position: relative;
+  width: min(52vw, 420px);
+  aspect-ratio: 1;
+}
+.ep240-clock-dial {
+  width: 100%; height: 100%;
+  transform: rotate(-90deg); /* start the ring fill at 12 o'clock */
+}
+.ep240-clock-track {
+  fill: none;
+  stroke: color-mix(in oklab, var(--ep-fg-3) 30%, transparent);
+  stroke-width: 2;
+}
+.ep240-clock-fill {
+  fill: none;
+  stroke: var(--ep-accent);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-dasharray: 540.35; /* 2 * PI * 86 */
+  filter: drop-shadow(0 0 10px color-mix(in oklab, var(--ep-accent) 65%, transparent));
+  animation: ep240-fill-hours 9s var(--ep-ease-inout) infinite;
+}
+/* The deadline itself — fixed at 12 o'clock, never moves, unlike the ring. */
+.ep240-clock-mark {
+  position: absolute; top: -3px; left: 50%;
+  width: 3px; height: 22px;
+  transform: translateX(-50%);
+  background: color-mix(in oklab, var(--ep-fg) 85%, transparent);
+  box-shadow: 0 0 12px 2px color-mix(in oklab, var(--ep-fg) 40%, transparent);
+  border-radius: 2px;
+}
+/* A hand that keeps sweeping regardless of how full the ring gets —
+   time passes whether or not it bought you anything. */
+.ep240-clock-hand {
+  position: absolute; left: 50%; bottom: 50%;
+  width: 2px; height: 40%;
+  transform-origin: bottom center;
+  background: linear-gradient(180deg,
+    transparent 0%,
+    color-mix(in oklab, var(--ep-fg-2) 55%, transparent) 40%,
+    color-mix(in oklab, var(--ep-fg-2) 55%, transparent) 100%);
+  animation: ep240-sweep 6s linear infinite;
+}
+.ep240-clock-grain {
+  position: absolute; inset: 0;
+  background-image: radial-gradient(color-mix(in oklab, var(--ep-fg) 6%, transparent) 1px, transparent 1px);
+  background-size: 3px 3px;
+  opacity: 0.5;
+}
+[data-theme="light"] .ep240-clock-track { stroke: color-mix(in oklab, var(--ep-fg-3) 45%, transparent); }
+[data-theme="light"] .ep240-clock-hand { opacity: 0.5; }
+[data-theme="light"] .ep240-clock-grain { opacity: 0.25; }
+
+/* Fill climbs toward "full" (hours consumed), pulls back only part way,
+   never returns to empty — the ring never actually frees up. */
+@keyframes ep240-fill-hours {
+  0%   { stroke-dashoffset: 400; }
+  45%  { stroke-dashoffset: 70; }
+  65%  { stroke-dashoffset: 230; }
+  100% { stroke-dashoffset: 400; }
+}
+@keyframes ep240-sweep {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes ep240-enter {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+[data-motion="off"] .ep240-clock-fill,
+[data-motion="off"] .ep240-clock-hand { animation: none; }
+[data-motion="off"] .ep240-clock-fill { stroke-dashoffset: 150; }
+
+
+/* Roster badge — replaces the guest avatar pill on roundup episodes */
+.ep240-roster-badge {
+  padding: 18px 38px;
+  gap: 0;
+}
+.ep240-roster-badge .ep-guest-text { text-align: center; }
+.ep240-roster-badge .ep-guest-name {
+  font-family: var(--font-mono);
+  letter-spacing: 0.1em; text-transform: uppercase; font-size: 12.5px;
+  margin-bottom: 9px;
+}
+.ep240-roster-badge .ep-guest-role { line-height: 1.4; }
+
+/* ========================================================================
+   EP 239 — timestamp citations, reader prompts
+   ======================================================================== */
+
+/* Citation — the speaker's hedcut with a speech bubble beside it.
+   Clicking jumps to that moment in the YouTube cut. */
+.ep240-cite {
+  display: inline-flex; align-items: center; gap: 9px;
+  margin-top: 14px;
+  text-decoration: none;
+  vertical-align: middle;
+}
+.ep240-cite-face {
+  flex: none;
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #f4f1ec;
+  border: 1px solid var(--ep-border-2);
+  transition: border-color 160ms var(--ep-ease), transform 160ms var(--ep-ease);
+}
+.ep240-cite-face img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center 15%;
+  display: block;
+}
+
+
+.ep240-cite-bubble {
+  position: relative;
+  display: flex; flex-direction: column; gap: 3px;
+  padding: 9px 15px;
+  border: 1px solid var(--ep-border);
+  border-radius: 12px;
+  background: color-mix(in oklab, var(--ep-bg-2) 78%, transparent);
+  transition: border-color 160ms var(--ep-ease), background 160ms var(--ep-ease);
+}
+/* Speech-bubble tail pointing back at the hedcut */
+.ep240-cite-bubble::before,
+.ep240-cite-bubble::after {
+  content: '';
+  position: absolute; top: 50%; right: 100%;
+  transform: translateY(-50%);
+  border: 7px solid transparent;
+}
+.ep240-cite-bubble::before {
+  border-right-color: var(--ep-border);
+}
+.ep240-cite-bubble::after {
+  margin-right: -1.5px;
+  border-right-color: color-mix(in oklab, var(--ep-bg-2) 78%, transparent);
+  transition: border-right-color 160ms var(--ep-ease);
+}
+.ep240-cite-who {
+  font-size: 12.5px; font-weight: 600; line-height: 1.1;
+  color: var(--ep-fg-2);
+  white-space: nowrap;
+}
+.ep240-cite-ts {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-family: var(--font-mono);
+  font-size: 10.5px; letter-spacing: 0.06em;
+  color: var(--ep-fg-3);
+  white-space: nowrap;
+}
+.ep240-cite-ts svg { width: 9px; height: 9px; flex: none; opacity: 0.85; }
+
+.ep240-cite:hover .ep240-cite-face {
+  border-color: var(--ep-accent);
+  transform: translateY(-1px);
+}
+.ep240-cite:hover .ep240-cite-bubble {
+  border-color: color-mix(in oklab, var(--ep-accent) 55%, transparent);
+  background: color-mix(in oklab, var(--ep-accent) 12%, var(--ep-bg-2));
+}
+.ep240-cite:hover .ep240-cite-bubble::before { border-right-color: color-mix(in oklab, var(--ep-accent) 55%, transparent); }
+.ep240-cite:hover .ep240-cite-bubble::after  { border-right-color: color-mix(in oklab, var(--ep-accent) 12%, var(--ep-bg-2)); }
+.ep240-cite:hover .ep240-cite-who { color: var(--ep-fg); }
+.ep240-cite:hover .ep240-cite-ts  { color: var(--ep-accent); }
+.ep240-cite:focus-visible { outline: 2px solid var(--ep-accent); outline-offset: 4px; border-radius: 12px; }
+
+.ep240-cites {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 14px;
+  margin-top: 20px; padding-top: 18px;
+  border-top: 1px solid var(--ep-border);
+}
+.ep240-cites .ep240-cite { margin-top: 0; }
+.ep240-cites-label {
+  flex-basis: 100%;
+  font-family: var(--font-mono);
+  font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--ep-fg-3); opacity: 0.7;
+  margin-bottom: 2px;
+}
+.ep-attr .ep240-cite { margin-top: 0; margin-left: 14px; }
+/* Inside a stack card the cite stays in the content flow, or it overflows
+   the fixed card height and the cards behind show through. */
+.ep-card .ep240-cite { margin-top: 16px; }
+
+/* ---- Series partners, footer block ---- */
+.ep240-sponsors {
+  padding: 64px 0 56px;
+  border-top: 1px solid var(--ep-border);
+  background: var(--ep-bg-2);
+}
+.ep240-sponsor-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+}
+.ep240-sponsor-tier {
+  font-family: var(--font-mono);
+  font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--ep-accent);
+  padding-bottom: 14px;
+  margin-bottom: 22px;
+  border-bottom: 1px solid var(--ep-border);
+}
+/* Fixed-height logo well so the two marks — a 40px stacked lockup and a 20px
+   wordmark — don't push their descriptions to different baselines. */
+.ep240-sponsor-logo {
+  display: flex;
+  align-items: center;
+  height: 44px;
+  margin-bottom: 20px;
+}
+.ep240-sponsor-logo img {
+  height: auto; width: auto;
+  max-height: 40px; max-width: 190px;
+  opacity: 0.92;
+  transition: opacity 160ms var(--ep-ease);
+}
+/* The two marks have very different aspect ratios — the Graitec lockup is
+   stacked, AVAIL is a single wide wordmark. Matching on height makes AVAIL
+   run far wider, so pin AVAIL to the Graitec lockup's rendered width. */
+#availLogo { width: 115px; max-width: 115px; }
+.ep240-sponsor-logo:hover img { opacity: 1; }
+.ep240-sponsor p {
+  font-size: 14px; line-height: 1.6;
+  color: var(--ep-fg-3);
+  max-width: 42ch;
+}
+.ep240-sponsor-note {
+  margin-top: 44px; padding-top: 24px;
+  border-top: 1px solid var(--ep-border);
+  font-size: 13px; line-height: 1.6;
+  color: var(--ep-fg-4);
+  max-width: 62ch;
+}
+@media (max-width: 700px) {
+  .ep240-sponsor-row { grid-template-columns: 1fr; gap: 44px; }
+}
+
+/* Note under the insights kicker — flags that these go somewhere new */
+.ep240-insights-note {
+  max-width: 56ch;
+  margin: 16px 0 -8px;
+  font-size: 14.5px; line-height: 1.6;
+  color: var(--ep-fg-3);
+}
+
+/* Reader prompt — the second beat on each insight, aimed at the reader */
+.ep240-prompt {
+  margin-top: 10px;
+  padding-left: 12px;
+  border-left: 2px solid color-mix(in oklab, var(--ep-accent) 55%, transparent);
+  color: var(--ep-fg-2);
+  font-style: italic;
+}
+
+/* Access note — the series is ungated, say so */
+.ep240-access {
+  margin: 26px auto 0;
+  max-width: 46ch;
+  font-size: 12.5px; line-height: 1.6;
+  color: var(--ep-fg-3);
+}
+
+
+.ep-hero-inner {
+  position: relative; z-index: 2;
+  text-align: center;
+}
+.ep-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--ep-fg-3);
+  display: inline-flex; align-items: center; gap: 10px;
+  margin-bottom: 28px;
+}
+.ep-eyebrow .dot {
+  display: inline-block;
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--ep-accent);
+  box-shadow: 0 0 12px var(--ep-accent), 0 0 4px var(--ep-accent);
+  margin: 0 4px;
+  vertical-align: middle;
+  animation: ep-pulse 2.4s var(--ep-ease) infinite;
+}
+.ep-eyebrow .dot-sm { width: 5px; height: 5px; opacity: .85; animation-delay: .3s; }
+.ep-eyebrow .dot-sm ~ .dot-sm { animation-delay: .6s; }
+@keyframes ep-pulse {
+  0%, 100% { box-shadow: 0 0 12px var(--ep-accent), 0 0 4px var(--ep-accent); }
+  50%      { box-shadow: 0 0 20px var(--ep-accent), 0 0 8px var(--ep-accent); }
+}
+.ep-eyebrow .num { color: var(--ep-fg); font-weight: 500; }
+
+.ep-hero h1 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(44px, 7vw, 112px);
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+  color: var(--ep-fg);
+  max-width: 12ch;
+  margin: 0 auto 28px;
+}
+.ep-hero h1 em {
+  font-style: normal;
+  background: var(--ep-grad);
+  background-clip: text; -webkit-background-clip: text;
+  color: transparent;
+}
+.ep-hero-subtitle {
+  font-family: var(--font-sans);
+  font-size: clamp(16px, 1.5vw, 20px);
+  color: var(--ep-fg-2);
+  max-width: 52ch; margin: 0 auto 40px;
+  line-height: 1.5;
+}
+
+.ep-guest {
+  display: inline-flex; align-items: center; gap: 14px;
+  padding: 10px 16px 10px 10px;
+  border: 1px solid var(--ep-border);
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--ep-bg-2) 70%, transparent);
+}
+.ep-guest-avatar {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--ep-fg);
+  display: grid; place-items: center;
+  font-family: var(--font-display); font-weight: 700;
+  color: var(--ep-bg); font-size: 14px;
+  overflow: hidden;
+}
+.ep-guest-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: center 22%; }
+/* Two-guest episodes: overlapping avatar stack in the hero pill */
+.ep-guest-avatars { display: inline-flex; }
+.ep-guest-avatars .ep-guest-avatar + .ep-guest-avatar {
+  margin-left: -12px;
+  box-shadow: 0 0 0 2px var(--ep-bg-2);
+}
+
+.ep-guest-text { text-align: left; line-height: 1.2; }
+.ep-guest-name { font-weight: 600; color: var(--ep-fg); font-size: 14px; }
+.ep-guest-role { font-size: 12px; color: var(--ep-fg-3); }
+
+/* =========================================================================
+   Section head — reusable
+   ------------------------------------------------------------------------- */
+.ep-section { padding: 112px 0; position: relative; }
+.ep-section + .ep-section { border-top: 1px solid var(--ep-border); }
+
+.ep-kicker {
+  display: flex; align-items: center; gap: 14px;
+  font-family: var(--font-mono);
+  font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--ep-fg-2);
+  margin-bottom: 32px;
+  white-space: nowrap;
+}
+.ep-kicker > span:first-of-type { flex: 0 1 auto; min-width: 0; }
+.ep-kicker .idx { margin-left: auto; }
+.ep-kicker::before {
+  content: ''; display: block; width: 24px; height: 1px;
+  background: var(--ep-accent);
+}
+.ep-kicker .idx {
+  font-family: var(--font-mono); color: var(--ep-fg-3);
+}
+
+/* =========================================================================
+   Central argument
+   ------------------------------------------------------------------------- */
+.ep-argument p {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(22px, 2.2vw, 30px);
+  line-height: 1.32;
+  letter-spacing: -0.01em;
+  color: var(--ep-fg);
+  max-width: 64rem;
+  column-gap: 56px;
+  column-rule: 1px solid var(--ep-border);
+}
+@media (min-width: 860px) {
+  .ep-argument p { columns: 2; }
+}
+.ep-argument .muted { color: var(--ep-fg-3); }
+.ep-argument .hit {
+  background: var(--ep-grad);
+  background-clip: text; -webkit-background-clip: text;
+  color: transparent;
+  font-style: italic;
+}
+
+/* =========================================================================
+   Pull quote
+   ------------------------------------------------------------------------- */
+.ep-quote {
+  background: var(--ep-bg-2);
+  border-top: 1px solid var(--ep-border);
+  border-bottom: 1px solid var(--ep-border);
+  padding: 120px 0;
+  position: relative;
+  overflow: hidden;
+}
+.ep-quote::before {
+  content: '"';
+  position: absolute; left: 50%; top: 40px;
+  transform: translateX(-50%);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 360px;
+  line-height: 1;
+  color: var(--ep-accent);
+  opacity: 0.08;
+  pointer-events: none;
+}
+.ep-quote blockquote {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(28px, 4vw, 52px);
+  line-height: 1.14;
+  letter-spacing: -0.02em;
+  color: var(--ep-fg);
+  max-width: 18ch;
+  margin: 0 auto;
+  text-align: center;
+  border: 0; padding: 0;
+}
+.ep-quote blockquote .hit {
+  background: var(--ep-grad);
+  background-clip: text; -webkit-background-clip: text;
+  color: transparent;
+}
+.ep-quote .ep-attr {
+  display: block; margin-top: 40px;
+  font-family: var(--font-mono);
+  font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--ep-fg-3);
+  text-align: center;
+}
+
+/* =========================================================================
+   Stats
+   ------------------------------------------------------------------------- */
+.ep-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border: 1px solid var(--ep-border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.ep-stat {
+  padding: 56px 32px;
+  text-align: left;
+  position: relative;
+  background: var(--ep-bg-2);
+  border-right: 1px solid var(--ep-border);
+  transition: background var(--dur) var(--ep-ease);
+}
+.ep-stat:last-child { border-right: 0; }
+.ep-stat:hover { background: var(--ep-bg-3); }
+.ep-stat-num {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(48px, 6vw, 88px);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  background: var(--ep-grad);
+  background-clip: text; -webkit-background-clip: text;
+  color: transparent;
+  margin-bottom: 20px;
+  font-variant-numeric: tabular-nums;
+}
+.ep-stat-label {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: var(--ep-fg-2);
+  line-height: 1.45;
+  max-width: 28ch;
+}
+.ep-stat-index {
+  position: absolute; top: 20px; right: 24px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ep-fg-4);
+  letter-spacing: 0.1em;
+}
+
+@media (max-width: 720px) {
+  .ep-stats-grid { grid-template-columns: 1fr; }
+  .ep-stat { border-right: 0; border-bottom: 1px solid var(--ep-border); }
+  .ep-stat:last-child { border-bottom: 0; }
+}
+
+/* =========================================================================
+   Provocative question
+   ------------------------------------------------------------------------- */
+.ep-question {
+  padding: 140px 0;
+  text-align: center;
+  background:
+    radial-gradient(ellipse 60% 60% at 50% 50%, var(--ep-accent-dim) 0%, transparent 70%),
+    var(--ep-bg);
+  border-top: 1px solid var(--ep-border);
+  border-bottom: 1px solid var(--ep-border);
+}
+.ep-question { position: relative; }
+.ep-question::before {
+  content: '?';
+  position: absolute; left: 50%; top: 50%;
+  transform: translate(-50%, -52%);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 440px;
+  line-height: 1;
+  color: var(--ep-accent);
+  opacity: 0.09;
+  filter: blur(1.5px);
+  pointer-events: none;
+}
+.ep-question .mark { display: none; }
+.ep-question .ep-container { position: relative; z-index: 1; }
+.ep-question p {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(22px, 2.4vw, 32px);
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  color: var(--ep-fg);
+  max-width: 28ch;
+  margin: 0 auto;
+}
+
+/* =========================================================================
+   Analysis cards
+   ------------------------------------------------------------------------- */
+.ep-analysis { display: grid; gap: 0; }
+.ep-analysis-card {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 32px;
+  padding: 48px 0;
+  border-top: 1px solid var(--ep-border);
+  align-items: start;
+  transition: transform 280ms var(--ep-ease), background 280ms var(--ep-ease);
+  will-change: transform;
+}
+.ep-analysis-card:last-child { border-bottom: 1px solid var(--ep-border); }
+.ep-analysis-card:hover { transform: translateX(6px); background: color-mix(in oklab, var(--ep-bg-2) 60%, transparent); }
+.ep-analysis-idx {
+  font-family: var(--font-mono);
+  font-size: 14px; color: var(--ep-fg-3);
+  letter-spacing: 0.1em;
+  padding-top: 8px;
+}
+.ep-analysis-card h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(22px, 2vw, 28px);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--ep-fg);
+  margin-bottom: 14px;
+}
+.ep-analysis-card p {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  color: var(--ep-fg-2);
+  line-height: 1.65;
+  max-width: 62ch;
+}
+@media (max-width: 720px) {
+  .ep-analysis-card { grid-template-columns: 1fr; gap: 12px; padding: 32px 0; }
+  .ep-analysis-idx { padding-top: 0; }
+}
+
+/* =========================================================================
+   Takeaways
+   ------------------------------------------------------------------------- */
+.ep-takeaways {
+  background: var(--ep-bg-2);
+}
+.ep-takeaways-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+  border: 1px solid var(--ep-border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.ep-takeaway {
+  padding: 36px 32px;
+  background: var(--ep-bg-3);
+  border-right: 1px solid var(--ep-border);
+  border-bottom: 1px solid var(--ep-border);
+  position: relative;
+  transition: background var(--dur) var(--ep-ease);
+}
+.ep-takeaway:nth-child(2n) { border-right: 0; }
+.ep-takeaway:nth-last-child(-n+2) { border-bottom: 0; }
+.ep-takeaway:hover { background: var(--ep-bg-4); }
+.ep-takeaway-num {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  color: var(--ep-accent);
+  margin-bottom: 16px;
+}
+.ep-takeaway p {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  color: var(--ep-fg);
+  line-height: 1.6;
+}
+@media (max-width: 720px) {
+  .ep-takeaways-grid { grid-template-columns: 1fr; }
+  .ep-takeaway { border-right: 0; }
+  .ep-takeaway:nth-last-child(-n+2) { border-bottom: 1px solid var(--ep-border); }
+  .ep-takeaway:last-child { border-bottom: 0; }
+}
+
+/* =========================================================================
+   Insights — list
+   ------------------------------------------------------------------------- */
+.ep-insights { }
+.ep-insight {
+  display: grid;
+  grid-template-columns: 80px 1fr auto;
+  gap: 32px;
+  padding: 32px 0;
+  border-top: 1px solid var(--ep-border);
+  align-items: center;
+  position: relative;
+}
+.ep-insight:last-child { border-bottom: 1px solid var(--ep-border); }
+.ep-insight-num {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 1;
+  background: var(--ep-grad);
+  background-clip: text; -webkit-background-clip: text;
+  color: transparent;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+.ep-insight-body h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 20px;
+  color: var(--ep-fg);
+  line-height: 1.2;
+  margin-bottom: 6px;
+}
+.ep-insight-body p {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  color: var(--ep-fg-2);
+  line-height: 1.55;
+  max-width: 58ch;
+}
+.ep-insight-mark {
+  width: 20px; height: 20px;
+  border: 1px solid var(--ep-border-2);
+  border-radius: 50%;
+  position: relative;
+}
+.ep-insight-mark::after {
+  content: ''; position: absolute; inset: 4px;
+  border-radius: 50%;
+  background: var(--ep-grad);
+  opacity: 0.6;
+}
+@media (max-width: 720px) {
+  .ep-insight { grid-template-columns: 60px 1fr; gap: 16px; }
+  .ep-insight-mark { display: none; }
+  .ep-insight-num { font-size: 36px; }
+}
+
+/* =========================================================================
+   Bottom line
+   ------------------------------------------------------------------------- */
+.ep-bottomline {
+  background: var(--ep-bg-2);
+}
+.ep-bottomline-grid {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 64px;
+  align-items: start;
+}
+.ep-bottomline-portrait {
+  position: sticky;
+  top: 80px;
+}
+
+/* EP 239 — roster in place of portraits. Ten people, no headshots. */
+.ep240-roster-label {
+  font-family: var(--font-mono);
+  font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--ep-fg-3);
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--ep-border);
+}
+.ep240-roster-list {
+  list-style: none; margin: 0; padding: 0;
+}
+.ep240-roster-list li {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--ep-border);
+}
+.ep240-roster-face {
+  flex: none;
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #f4f1ec;
+  border: 1px solid var(--ep-border-2);
+}
+.ep240-roster-face img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center 15%;
+  display: block;
+}
+
+.ep240-roster-text {
+  display: flex; flex-direction: column; gap: 2px; min-width: 0;
+}
+.ep240-roster-name {
+  font-size: 13.5px; font-weight: 600; color: var(--ep-fg);
+  line-height: 1.2;
+}
+.ep240-roster-firm {
+  font-family: var(--font-mono);
+  font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--ep-fg-3);
+}
+.ep-portrait-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--ep-fg);
+  border: 1px solid var(--ep-border);
+}
+.ep-portrait-frame::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 60%, color-mix(in oklab, var(--ep-accent-3) 22%, transparent) 100%);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  z-index: 1;
+}
+.ep-portrait-frame img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center 22%;
+  display: block;
+}
+.ep-portrait-caption {
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid var(--ep-border);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ep-fg-3);
+}
+.ep-portrait-name {
+  color: var(--ep-fg);
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+/* Two-guest episodes: portraits sit side by side under one caption */
+.ep-portrait-duo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.ep-bottomline-text {
+  min-width: 0;
+}
+.ep-bottomline p {
+  font-family: var(--font-sans);
+  font-size: 18px;
+  color: var(--ep-fg-2);
+  line-height: 1.7;
+  max-width: 62ch;
+  margin-bottom: 40px;
+}
+.ep-bottomline .closing {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(24px, 2.4vw, 32px);
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: var(--ep-fg);
+  max-width: 26ch;
+  border-left: 3px solid var(--ep-accent);
+  padding-left: 32px;
+  margin: 0;
+}
+.ep-bottomline .closing .closing-attr {
+  display: block;
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: var(--ep-fg-3);
+  margin-top: 12px;
+}
+@media (max-width: 720px) {
+  .ep-bottomline-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .ep-bottomline-portrait {
+    position: static;
+    max-width: 220px;
+  }
+}
+
+/* =========================================================================
+   Footer / CTA
+   ------------------------------------------------------------------------- */
+.ep-cta {
+  padding: 120px 0;
+  text-align: center;
+  background:
+    radial-gradient(ellipse 60% 80% at 50% 0%, var(--ep-accent-dim) 0%, transparent 60%),
+    var(--ep-bg);
+  border-top: 1px solid var(--ep-border);
+}
+.ep-cta h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(32px, 4vw, 56px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--ep-fg);
+  max-width: 16ch;
+  margin: 0 auto 32px;
+}
+.ep-cta-buttons {
+  display: inline-flex; gap: 12px; flex-wrap: wrap;
+  justify-content: center;
+}
+.ep-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 22px;
+  border-radius: var(--r-pill);
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 14px;
+  text-decoration: none;
+  transition: transform var(--dur) var(--ep-ease), background var(--dur) var(--ep-ease), border-color var(--dur) var(--ep-ease);
+  cursor: pointer;
+}
+.ep-btn-primary {
+  background: var(--ep-grad);
+  color: #fff;
+  border: 1px solid transparent;
+}
+.ep-btn-primary:hover { transform: translateY(-2px); color: #fff; filter: brightness(1.08); }
+.ep-btn-primary:hover * { color: #fff; }
+.ep-btn-ghost {
+  background: transparent;
+  color: var(--ep-fg);
+  border: 1px solid var(--ep-border-2);
+}
+.ep-btn-ghost:hover { border-color: var(--ep-fg); color: var(--ep-fg); background: var(--ep-bg-2); }
+
+.ep-footer {
+  padding: 32px 0 48px;
+  text-align: center;
+  border-top: 1px solid var(--ep-border);
+}
+.ep-footer-brand {
+  font-family: var(--font-mono);
+  font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--ep-fg-2);
+  display: inline-flex; align-items: center; gap: 14px;
+}
+.ep-footer-brand .dot { opacity: .4; }
+
+/* =========================================================================
+   Tweaks panel
+   ------------------------------------------------------------------------- */
+.tweaks-panel {
+  position: fixed; right: 20px; bottom: 20px;
+  z-index: 100;
+  background: var(--ep-bg-3);
+  border: 1px solid var(--ep-border-2);
+  border-radius: 10px;
+  padding: 16px;
+  min-width: 240px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  transform: translateY(20px); opacity: 0; pointer-events: none;
+  transition: transform var(--dur) var(--ep-ease), opacity var(--dur) var(--ep-ease);
+}
+.tweaks-panel.is-open { transform: none; opacity: 1; pointer-events: auto; }
+.tweaks-title {
+  font-family: var(--font-display); font-weight: 600; font-size: 12px;
+  letter-spacing: 0.15em; text-transform: uppercase; color: var(--ep-fg-3);
+  margin-bottom: 12px;
+}
+.tweaks-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 8px 0; }
+.tweaks-row + .tweaks-row { border-top: 1px solid var(--ep-border); }
+.tweaks-label { color: var(--ep-fg-2); }
+.tweaks-opts { display: inline-flex; gap: 4px; }
+.tweaks-chip {
+  padding: 4px 10px; border-radius: 999px;
+  font-size: 11px; font-family: var(--font-mono);
+  background: transparent; border: 1px solid var(--ep-border-2);
+  color: var(--ep-fg-2); cursor: pointer;
+  transition: all var(--dur) var(--ep-ease);
+}
+.tweaks-chip.is-active {
+  background: var(--ep-grad); color: #fff; border-color: transparent;
+}
+.tweaks-swatch {
+  width: 22px; height: 22px; border-radius: 50%;
+  cursor: pointer; border: 2px solid transparent;
+  transition: border-color var(--dur) var(--ep-ease), transform var(--dur) var(--ep-ease);
+}
+.tweaks-swatch.is-active { border-color: var(--ep-fg); transform: scale(1.12); }
+.tweaks-swatch[data-value="coral"]  { background: linear-gradient(45deg, #EB4F5D, #9C3B6E); }
+.tweaks-swatch[data-value="plum"]   { background: linear-gradient(45deg, #C54566, #614F9B); }
+.tweaks-swatch[data-value="indigo"] { background: linear-gradient(45deg, #7A6AC2, #3D355A); }
+
+/* End-of-article brand mark — the TRXL X+ favicon */
+.ep-footer-mark {
+  display: block;
+  width: 20px; height: 20px;
+  border-radius: 3px;
+  flex-shrink: 0;
+  position: relative; top: -0.25px;   /* align glyph center to text ink-center (measured) */
+}
+
+/* =========================================================================
+   Insights — swipeable card stack (screen)
+   The plain .ep-insights list stays in the DOM as the no-JS and print
+   fallback; JS adds .has-stack to the section to hide it on screen.
+   ------------------------------------------------------------------------- */
+.ep-insights-section.has-stack .ep-insights { display: none; }
+
+.ep-stack-wrap {
+  display: none;                       /* revealed by JS via .has-stack */
+  grid-template-columns: 1fr;
+  justify-items: center;
+  gap: 26px;
+  margin-top: 40px;
+}
+.has-stack .ep-stack-wrap { display: grid; }
+
+.ep-stack {
+  position: relative;
+  width: min(560px, 100%);
+  /* Measured against every card's actual content (title + body + prompt +
+     cite) at this breakpoint — the tallest card needs ~477px here, so this
+     has headroom. A shorter fixed height clips the cite chip off the
+     bottom edge, which is silent (no scrollbar, no visible error) until
+     someone screenshots it. Re-measure if insight copy changes. */
+  height: 500px;
+  margin-bottom: 96px;                 /* room for the cards peeking out below */
+  touch-action: pan-y;                 /* page still scrolls vertically on touch */
+  user-select: none;
+}
+
+.ep-card {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 18px;
+  padding: 32px 34px;
+  border-radius: 14px;
+  border: 1px solid var(--ep-border);
+  background:
+    linear-gradient(160deg,
+      color-mix(in oklab, var(--ep-bg-3) 96%, var(--ep-accent) 4%) 0%,
+      var(--ep-bg-2) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.06),
+    0 18px 50px -20px rgba(0,0,0,.85);
+  transform-origin: 50% 0%;            /* cards behind shrink downward and peek */
+  will-change: transform, opacity;
+  cursor: grab;
+}
+.ep-card.is-dragging { cursor: grabbing; transition: none; }
+.ep-card:not(.is-dragging) {
+  transition: transform 420ms var(--ep-ease), opacity 300ms var(--ep-ease);
+}
+.ep-card[data-pos="0"] { pointer-events: auto; }
+.ep-card:not([data-pos="0"]) { pointer-events: none; }
+
+.ep-card-head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: 16px;
+}
+.ep-card-num {
+  font-family: var(--font-display);
+  font-weight: 700; font-size: 44px; line-height: 1;
+  background: var(--ep-grad);
+  background-clip: text; -webkit-background-clip: text;
+  color: transparent;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+.ep-card-of {
+  font-family: var(--font-mono);
+  font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--ep-fg-4);
+}
+.ep-card h4 {
+  font-family: var(--font-display);
+  font-weight: 600; font-size: 26px; line-height: 1.15;
+  color: var(--ep-fg);
+  letter-spacing: -0.01em;
+  margin-bottom: 10px;
+}
+.ep-card p {
+  font-family: var(--font-sans);
+  font-size: 16px; line-height: 1.6;
+  color: var(--ep-fg-2);
+  max-width: 46ch;
+}
+.ep-card-rule {
+  height: 2px; width: 44px; border-radius: 2px;
+  background: var(--ep-grad); opacity: .8;
+}
+
+/* Drag affordance — tint follows the direction you're pulling */
+.ep-card::after {
+  content: '';
+  position: absolute; inset: 0;
+  border-radius: 14px;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(circle at var(--tint-x, 50%) 50%,
+    color-mix(in oklab, var(--ep-accent) 22%, transparent) 0%, transparent 60%);
+  transition: opacity 160ms linear;
+}
+.ep-card.is-dragging::after { opacity: var(--tint, 0); }
+
+.ep-stack-controls { display: flex; align-items: center; gap: 18px; }
+.ep-stack-btn {
+  width: 42px; height: 42px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  border: 1px solid var(--ep-border-2);
+  background: transparent;
+  color: var(--ep-fg-2);
+  cursor: pointer;
+  transition: border-color 200ms var(--ep-ease), color 200ms var(--ep-ease), transform 200ms var(--ep-ease);
+}
+.ep-stack-btn:hover {
+  border-color: color-mix(in oklab, var(--ep-accent) 55%, transparent);
+  color: var(--ep-fg);
+  transform: translateY(-1px);
+}
+.ep-stack-btn:focus-visible { outline: 2px solid var(--ep-accent); outline-offset: 3px; }
+
+.ep-stack-dots { display: flex; gap: 8px; }
+.ep-stack-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--ep-fg-4);
+  border: 0; padding: 0; cursor: pointer;
+  opacity: .5;
+  transition: opacity 200ms var(--ep-ease), transform 200ms var(--ep-ease), background 200ms var(--ep-ease);
+}
+.ep-stack-dot.is-active { background: var(--ep-accent); opacity: 1; transform: scale(1.5); }
+
+.ep-stack-hint {
+  font-family: var(--font-mono);
+  font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--ep-fg-4);
+}
+
+@media (max-width: 720px) {
+  /* Narrower cards wrap more lines, so mobile needs more headroom than
+     desktop, not less — measured against the tallest card at 390px
+     (~558px required). */
+  .ep-stack { height: 580px; }
+  .ep-card { padding: 26px 24px; }
+  .ep-card h4 { font-size: 22px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ep-card:not(.is-dragging) { transition: none; }
+}
+
+/* PDF / print export gets the plain list, never the stack */
+@media print {
+  .ep-insights-section.has-stack .ep-insights { display: block; }
+  .has-stack .ep-stack-wrap { display: none; }
+  /* reveal-on-scroll must not blank out content that was never scrolled to */
+  html.js-motion .reveal { opacity: 1; transform: none; }
+}

@@ -1,0 +1,267 @@
+/* =========================================================================
+   TRXL — Colors & Type Tokens
+   A single source of truth for palette, typography, spacing.
+   ------------------------------------------------------------------------- */
+
+/* --- Fonts -------------------------------------------------------------- */
+/* Space Grotesk is used for the geometric, slightly condensed headline feel
+   that matches the TRXL wordmark. Inter is the workhorse for body copy.
+   JetBrains Mono for numeric/mono accents (timecodes, episode numbers). */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  /* -----------------------------------------------------------------------
+     CORE BRAND — the cover-art gradient
+     Sampled directly from TRXL cover art 2023 3k.jpg
+     ----------------------------------------------------------------------- */
+  --trxl-coral:      #EB4F5D;   /* bottom-left hot point */
+  --trxl-magenta:    #C54566;   /* mid-left */
+  --trxl-plum:       #9C3B6E;   /* center — the signature "TRXL plum" */
+  --trxl-mulberry:   #7D4584;   /* mid-right */
+  --trxl-indigo:     #614F9B;   /* top-right violet */
+
+  /* TRXL+ (premium / member) darker variant */
+  --trxl-plus-oxblood: #83363C;
+  --trxl-plus-burgundy:#5F354D;
+  --trxl-plus-nightshade:#3D355A;
+
+  /* Signature gradients */
+  --grad-trxl: linear-gradient(45deg, var(--trxl-coral) 0%, var(--trxl-plum) 45%, var(--trxl-indigo) 100%);
+  --grad-trxl-soft: linear-gradient(135deg, #F28089 0%, #B65A84 50%, #7E6AB0 100%);
+  --grad-trxl-plus: linear-gradient(45deg, var(--trxl-plus-oxblood) 0%, var(--trxl-plus-burgundy) 50%, var(--trxl-plus-nightshade) 100%);
+
+  /* -----------------------------------------------------------------------
+     NEUTRALS — warm near-blacks, paper whites.
+     TRXL is a black-on-white brand at rest; gradient is used as an accent.
+     ----------------------------------------------------------------------- */
+  --ink:      #0A0A0B;   /* near-black, body text on light */
+  --ink-2:    #1F1F22;   /* secondary surfaces */
+  --ink-3:    #2E2E33;
+  --graphite: #4A4A52;   /* muted body text */
+  --slate:    #6E6E78;   /* captions / meta */
+  --stone:    #9A9AA4;   /* placeholder / disabled */
+  --fog:      #D6D6DB;   /* hairline borders on light */
+  --mist:     #EDEDF0;   /* subtle fills */
+  --paper:    #F7F6F3;   /* warm off-white — the default canvas */
+  --bone:     #FBFAF7;
+  --white:    #FFFFFF;
+
+  /* -----------------------------------------------------------------------
+     SEMANTIC — foreground / background / surfaces
+     ----------------------------------------------------------------------- */
+  --bg:           var(--paper);
+  --bg-elevated:  var(--white);
+  --bg-inverse:   var(--ink);
+
+  --fg:           var(--ink);
+  --fg-muted:     var(--graphite);
+  --fg-subtle:    var(--slate);
+  --fg-faint:     var(--stone);
+  --fg-inverse:   var(--paper);
+
+  --border:       var(--fog);
+  --border-strong:var(--ink);
+  --divider:      #E4E3DF;
+
+  --accent:       var(--trxl-plum);
+  --accent-hover: #852C5D;
+  --accent-press: #6E234B;
+  --accent-fg:    var(--white);
+
+  /* Status (used sparingly — TRXL is editorial, not app-heavy) */
+  --success: #2E7D5B;
+  --warning: #B8761A;
+  --danger:  #B83838;
+  --info:    var(--trxl-indigo);
+
+  /* Dark-mode surfaces (for player / focus viewing) */
+  --night:     #121114;
+  --night-2:   #1B1A1E;
+  --night-3:   #26252A;
+  --night-fg:  #F2F1ED;
+
+  /* -----------------------------------------------------------------------
+     TYPE — families, scale, weights
+     ----------------------------------------------------------------------- */
+  --font-display: 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  --font-sans:    'Inter', 'Helvetica Neue', Arial, sans-serif;
+  --font-mono:    'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* Fluid scale (clamps — min / preferred / max) */
+  --fs-eyebrow: 0.75rem;   /* 12px — uppercase label */
+  --fs-caption: 0.8125rem; /* 13px */
+  --fs-small:   0.875rem;  /* 14px */
+  --fs-body:    1rem;      /* 16px */
+  --fs-lead:    1.125rem;  /* 18px */
+  --fs-h6:      1.125rem;
+  --fs-h5:      1.375rem;  /* 22px */
+  --fs-h4:      1.75rem;   /* 28px */
+  --fs-h3:      clamp(1.875rem, 1.4rem + 1.5vw, 2.5rem);   /* 30→40 */
+  --fs-h2:      clamp(2.25rem, 1.6rem + 2.5vw, 3.5rem);    /* 36→56 */
+  --fs-h1:      clamp(3rem, 2rem + 4vw, 5.5rem);           /* 48→88 */
+  --fs-display: clamp(4rem, 2rem + 8vw, 8.5rem);           /* 64→136 */
+
+  --lh-tight:  1.05;
+  --lh-snug:   1.2;
+  --lh-body:   1.55;
+  --lh-loose:  1.7;
+
+  --tracking-tight:  -0.02em;
+  --tracking-normal: 0;
+  --tracking-wide:   0.02em;
+  --tracking-label:  0.14em;  /* eyebrow uppercase */
+
+  /* -----------------------------------------------------------------------
+     SPACING — 4px base, loose editorial rhythm
+     ----------------------------------------------------------------------- */
+  --s-0: 0;
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 48px;
+  --s-8: 64px;
+  --s-9: 96px;
+  --s-10: 144px;
+
+  /* Reading widths */
+  --measure-narrow: 36ch;
+  --measure:        62ch;
+  --measure-wide:   78ch;
+
+  /* -----------------------------------------------------------------------
+     RADII — TRXL is mostly hard-edged; small radii on interactive affordances.
+     ----------------------------------------------------------------------- */
+  --r-0: 0;
+  --r-1: 2px;
+  --r-2: 4px;
+  --r-3: 8px;
+  --r-pill: 999px;
+
+  /* -----------------------------------------------------------------------
+     SHADOWS — subtle, editorial; no glows, no neon.
+     ----------------------------------------------------------------------- */
+  --shadow-1: 0 1px 2px rgba(10,10,11,0.06), 0 1px 1px rgba(10,10,11,0.04);
+  --shadow-2: 0 4px 12px rgba(10,10,11,0.08), 0 2px 4px rgba(10,10,11,0.04);
+  --shadow-3: 0 12px 32px rgba(10,10,11,0.12), 0 4px 8px rgba(10,10,11,0.06);
+  --shadow-inset: inset 0 0 0 1px var(--border);
+
+  /* Focus ring uses the signature plum */
+  --focus-ring: 0 0 0 3px rgba(156,59,110,0.35);
+
+  /* -----------------------------------------------------------------------
+     MOTION
+     ----------------------------------------------------------------------- */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 120ms;
+  --dur: 220ms;
+  --dur-slow: 400ms;
+
+  /* -----------------------------------------------------------------------
+     LAYOUT
+     ----------------------------------------------------------------------- */
+  --container: 1200px;
+  --container-wide: 1440px;
+  --gutter: clamp(20px, 4vw, 48px);
+}
+
+/* =========================================================================
+   SEMANTIC TYPOGRAPHY — apply these classes / selectors, don't redefine fonts
+   ------------------------------------------------------------------------- */
+
+html { font-family: var(--font-sans); color: var(--fg); background: var(--bg);
+  -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility; }
+
+body { font-size: var(--fs-body); line-height: var(--lh-body); }
+
+.h-display, h1.display {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: var(--fs-display); line-height: var(--lh-tight);
+  letter-spacing: var(--tracking-tight); color: inherit;
+}
+
+/* NOTE: headings + paragraphs inherit color so they work on inverted surfaces.
+   Set an explicit color on a parent (body, section) to change it. */
+h1, .h1 {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: var(--fs-h1); line-height: var(--lh-tight);
+  letter-spacing: var(--tracking-tight); color: inherit;
+  margin: 0 0 var(--s-5);
+}
+h2, .h2 {
+  font-family: var(--font-display); font-weight: 600;
+  font-size: var(--fs-h2); line-height: var(--lh-snug);
+  letter-spacing: var(--tracking-tight); color: inherit;
+  margin: 0 0 var(--s-4);
+}
+h3, .h3 {
+  font-family: var(--font-display); font-weight: 600;
+  font-size: var(--fs-h3); line-height: var(--lh-snug);
+  letter-spacing: -0.01em; color: inherit; margin: 0 0 var(--s-3);
+}
+h4, .h4 {
+  font-family: var(--font-display); font-weight: 600;
+  font-size: var(--fs-h4); line-height: var(--lh-snug);
+  color: inherit; margin: 0 0 var(--s-3);
+}
+h5, .h5 {
+  font-family: var(--font-sans); font-weight: 600;
+  font-size: var(--fs-h5); line-height: var(--lh-snug);
+  color: inherit; margin: 0 0 var(--s-2);
+}
+h6, .h6 {
+  font-family: var(--font-sans); font-weight: 600;
+  font-size: var(--fs-h6); line-height: var(--lh-snug);
+  color: inherit; margin: 0 0 var(--s-2);
+}
+
+p, .p {
+  font-family: var(--font-sans); font-weight: 400;
+  font-size: var(--fs-body); line-height: var(--lh-body);
+  color: inherit; max-width: var(--measure);
+  margin: 0 0 var(--s-4); text-wrap: pretty;
+}
+.lead {
+  font-size: var(--fs-lead); line-height: 1.5; color: inherit;
+  max-width: var(--measure); font-weight: 400;
+}
+.caption, small, .small {
+  font-size: var(--fs-caption); color: var(--fg-subtle); line-height: 1.4;
+}
+
+.eyebrow {
+  font-family: var(--font-sans); font-size: var(--fs-eyebrow);
+  font-weight: 600; letter-spacing: var(--tracking-label);
+  text-transform: uppercase; color: var(--fg-subtle);
+}
+
+.mono, code, kbd, samp, pre {
+  font-family: var(--font-mono); font-size: 0.92em;
+}
+
+code { background: var(--mist); padding: 0.1em 0.35em; border-radius: var(--r-2); }
+pre  { background: var(--night); color: var(--night-fg); padding: var(--s-4); border-radius: var(--r-3); overflow: auto; }
+
+a { color: inherit; text-decoration: underline; text-decoration-thickness: 1px;
+    text-underline-offset: 3px; text-decoration-color: var(--stone);
+    transition: text-decoration-color var(--dur) var(--ease-out), color var(--dur) var(--ease-out); }
+a:hover { text-decoration-color: var(--trxl-plum); color: var(--trxl-plum); }
+
+hr { border: 0; border-top: 1px solid var(--divider); margin: var(--s-6) 0; }
+
+blockquote {
+  font-family: var(--font-display); font-weight: 500;
+  font-size: var(--fs-h4); line-height: 1.3; letter-spacing: -0.01em;
+  border-left: 3px solid var(--trxl-plum); padding-left: var(--s-5);
+  margin: var(--s-6) 0; color: inherit; max-width: var(--measure-wide);
+}
+
+/* Selection — echoes the brand */
+::selection { background: var(--trxl-plum); color: var(--white); }
+
+/* Focus */
+:focus-visible { outline: none; box-shadow: var(--focus-ring); border-radius: var(--r-2); }
